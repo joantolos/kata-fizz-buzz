@@ -1,5 +1,3 @@
-import org.gradle.api.tasks.bundling.Jar
-
 group 'com.joantolos.kata.fizz.buzz'
 
 apply plugin: 'java'
@@ -38,7 +36,7 @@ allprojects {
         afterEvaluate {
             classDirectories = files(classDirectories.files.collect {
                 fileTree(dir: it,
-                        exclude: ['com/joantolos/kata/fizzbuzz/FizzBuzz*'])
+                        exclude: ['com/joantolos/kata/fizz/buzz/FizzBuzz*'])
             })
         }
     }
@@ -48,7 +46,7 @@ allprojects {
     }
 
     task fatJar(type: Jar) {
-        manifest { attributes'Main-Class': 'com.joantolos.kata.fizzbuzz.FizzBuzz' }
+        manifest { attributes'Main-Class': 'com.joantolos.kata.fizz.buzz.FizzBuzz' }
         baseName = project.name + '-all'
         from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
         with jar
